@@ -1,0 +1,41 @@
+import React, { useEffect } from 'react';
+import { 
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Button,
+  Text,
+  Image,
+} from '@chakra-ui/react';
+
+const GameModal = ({ isOpen, onClose, game, outcome }) => {
+  return (
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>{game?.name}</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          <Image src={game?.image} alt={game?.name} />
+          <Text mt={4}>{game?.description}</Text>
+          {outcome && (
+            <Text mt={4} fontSize="xl" fontWeight="bold">
+              You have {outcome}!
+            </Text>
+          )}
+        </ModalBody>
+        <ModalFooter>
+          <Button colorScheme="blue" mr={3} onClick={onClose}>
+            Close
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  );
+};
+
+export default GameModal;
